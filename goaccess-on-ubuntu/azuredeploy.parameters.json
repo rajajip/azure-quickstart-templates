@@ -11,7 +11,7 @@
     "dnsNameForPublicIP": {
       "value": "GEN-UNIQUE-12"
     },
-	  "appGwAccessLogsBlobSaSUri": {
+	  "appGwAccessLogsBlobSasUri": {
 	    "value" : ""
 	  }	
   }

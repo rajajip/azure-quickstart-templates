@@ -20,7 +20,7 @@
         "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
     },
-    "appGwAccessLogsBlobSaSUri": {
+    "appGwAccessLogsBlobSasUri": {
       "type": "string",
       "metadata": {
         "description": "Blob SAS Uri for Azure Application Gateway Access Logs."
@@ -177,7 +177,7 @@
             "https://raw.githubusercontent.com/rajajip/azure-quickstart-templates/goaccess-on-ubuntu/goaccess-on-ubuntu/scripts/setup_vm.sh",
             "https://dot.net/v1/dotnet-install.sh"
           ],
-          "commandToExecute": "sh setup_vm.sh"
+          "commandToExecute": "[concat('sh setup_vm.sh ' , parameters('appGwAccessLogsBlobSasUri'))]"
         }
       }
     }
