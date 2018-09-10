@@ -19,10 +19,10 @@ apt-get -y install aspnetcore-runtime-2.1
 mkdir /var/log/azure/Microsoft.Azure.Networking.ApplicationGateway.LogProcessor
 touch /var/log/azure/Microsoft.Azure.Networking.ApplicationGateway.LogProcessor/access_log.log
 unzip -o publish.zip
-mv publish /usr/share/AppGatewayLogProcessor
-echo $1 >> /usr/share/AppGatewayLogProcessor/blobsasuri.key
-chmod 644 /usr/share/AppGatewayLogProcessor/blobsasuri.key
-dotnet /usr/share/AppGatewayLogProcessor/AppGatewayLogProcessor.dll &
+mv publish /usr/share/appgatewaylogprocessor
+echo $1 >> /usr/share/appgatewaylogprocessor/blobsasuri.key
+chmod 644 /usr/share/appgatewaylogprocessor/blobsasuri.key
+dotnet /usr/share/appgatewaylogprocessor/AppGatewayLogProcessor.dll &
 
 # Install and Setup GoAccess
 sh install_goaccess.sh
