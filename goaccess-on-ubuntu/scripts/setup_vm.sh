@@ -3,11 +3,6 @@
 # Update Packages 
 apt-get -y update
 
-# Save and Setup Blob SaS Uri
-mkdir /usr/share/appgw
-echo $1 >> /usr/share/appgw/blobsasuri.key
-chmod 644 /usr/share/appgw/blobsasuri.key
-
 #Install Libcurl3, unzip
 apt-get -y install libcurl3 unzip
 
@@ -21,8 +16,13 @@ apt-get -y update
 apt-get -y install aspnetcore-runtime-2.1
 
 # Install Log Processor Application
+mkdir /var/log/azure/Microsoft.Azure.Networking.ApplicationGateway.LogProcessor
+touch /var/log/azure/Microsoft.Azure.Networking.ApplicationGateway.LogProcessor/access_log.log
 unzip -o publish.zip
-dotnet ./publish/AppGatewayLogProcessor.dll &
+mv publish /usr/share/AppGatewayLogProcessor
+echo $1 >> /usr/share/AppGatewayLogProcessor/blobsasuri.key
+chmod 644 /usr/share/AppGatewayLogProcessor/blobsasuri.key
+dotnet /usr/share/AppGatewayLogProcessor/AppGatewayLogProcessor.dll &
 
 # Install and Setup GoAccess
 sh install_goaccess.sh

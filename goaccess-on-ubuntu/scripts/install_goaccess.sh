@@ -14,7 +14,6 @@ apt-get -y install apache2
 apt-get install goaccess
 
 # Start GoAccess
-touch /var/log/azure/Microsoft.Azure.Networking.ApplicationGateway.LogProcessor/access_log.log
 goaccess /var/log/azure/Microsoft.Azure.Networking.ApplicationGateway.LogProcessor/access_log.log -o /var/www/html/report.html --real-time-html --port=8080 --log-format='"%^": "%dT%t+%^","%^": {%^=>%^, %^=>"%h", %^=>%^, %^=>"%m", %^=>"%U", %^=>"%q", %^=>"%u", %^=>"%s", %^=>"%H", %^=>"%b", %^=>%^, %^=>"%T", %^=>%^},' --time-format='%T' --date-format='%Y-%m-%d'
 
 # restart Apache
