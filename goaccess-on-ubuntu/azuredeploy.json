@@ -174,6 +174,8 @@
           "fileUris": [
             "https://raw.githubusercontent.com/rajajip/azure-quickstart-templates/goaccess-on-ubuntu/goaccess-on-ubuntu/scripts/install_goaccess.sh",
             "https://raw.githubusercontent.com/rajajip/azure-quickstart-templates/goaccess-on-ubuntu/goaccess-on-ubuntu/scripts/setup_vm.sh",
+            "https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb",
+            "https://bakerstr.blob.core.windows.net/logprocessor/publish.zip?st=2018-09-10T12%3A29%3A06Z&se=2050-09-11T12%3A29%3A00Z&sp=rl&sv=2018-03-28&sr=b&sig=HFJMvu8dzn8QEl%2BTrGDyKfZ90kVLDw1KywEhyWbVdpA%3D",
             "https://dot.net/v1/dotnet-install.sh"
           ],
           "commandToExecute": "[concat('sh setup_vm.sh ' , parameters('appGwAccessLogsBlobSasUri'))]"
