@@ -29,8 +29,7 @@
     "ubuntuOSVersion": {
       "type": "string",
       "defaultValue": "18.04-LTS",
-      "allowedValues": [        
-		      "16.04-LTS",
+      "allowedValues": [		   
 		      "18.04-LTS"
       ],
       "metadata": {
