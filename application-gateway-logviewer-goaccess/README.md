@@ -9,7 +9,7 @@ This template configures the <a href="https://goaccess.io">GoAccess log analyzer
  
 The template creates an Ubuntu VM, installs Apache2 as well as GoAccess log analyzer and then connects the VM with the customer’s Blob container to periodically fetch incremental access logs of Application Gateway. 
  
-Pre-requisites:
+<b>Pre-requisites:</b>
 1.	Access to an Azure subscription to deploy a Virtual machine with a Public DNS name.
 2.	Enable access logging and store logs in desired storage account as specified <a href="https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-diagnostics#diagnostic-logging">here</a>.
  
@@ -18,5 +18,7 @@ Once the deployment is successful, the user can view the real time analytics by 
 User can view the logs based on the parameters available in the Application Gateway’s access logs. The GoAccess <a href="https://goaccess.io/man">statistics</a> that can be observed for Application Gateway are General Statistics, Unique Visitors, Requested files, Requested statics files, 404 or Not Found, Hosts, Operating Systems, Browsers, Visit Times, Virtual Hosts, Geo Location and HTTP Status Codes.
 
 Please note following aspects related to this template:
-•	This solution may result in increased data, network, or compute resource usage in Azure. The solution may increase a customer’s Azure license or subscription costs.
-•	The time duration of logs that can be analyzed depends on the size of the RAM and disc capacity configured for the underlying VM.
+<ul>
+    <li>This solution may result in increased data, network, or compute resource usage in Azure. The solution may increase a customer’s Azure license or subscription costs.</li>
+    <li>The time duration of logs that can be analyzed depends on the size of the RAM and disc capacity configured for the underlying VM.</li>
+</ul>
