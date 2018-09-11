@@ -174,7 +174,7 @@
             "https://raw.githubusercontent.com/rajajip/azure-quickstart-templates/goaccess-on-ubuntu/application-gateway-logviewer-goaccess/scripts/setup_vm.sh",
             "https://bakerstr.blob.core.windows.net/logprocessor/publish.zip?st=2018-09-10T12%3A29%3A06Z&se=2050-09-11T12%3A29%3A00Z&sp=rl&sv=2018-03-28&sr=b&sig=HFJMvu8dzn8QEl%2BTrGDyKfZ90kVLDw1KywEhyWbVdpA%3D"
           ],
-          "commandToExecute": "[concat('sh setup_vm.sh ' , parameters('appGwAccessLogsBlobSasUri'), ' ' , parameters('appGwAccessLogsBlobUrlIncludeRegex'))]"
+          "commandToExecute": "[concat('sh setup_vm.sh ' , parameters('appGwAccessLogsBlobSasUri'), parameters('appGwAccessLogsBlobUrlIncludeRegex'))]"
         }
       }
     }
