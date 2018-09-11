@@ -4,6 +4,7 @@
   "parameters": {    
     "adminUsername": {
       "type": "string",
+      "defaultValue": "ubuntu",
       "metadata": {
         "description": "User name for the Virtual Machine."
       }
@@ -26,14 +27,11 @@
         "description": "Blob SAS Uri for Azure Application Gateway Access Logs."
       }
     },
-    "ubuntuOSVersion": {
+    "appGwAccessLogsBlobUrlIncludeRegex": {
       "type": "string",
-      "defaultValue": "18.04-LTS",
-      "allowedValues": [		   
-		      "18.04-LTS"
-      ],
+      "defaultValue": ".*",
       "metadata": {
-        "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version. Allowed values: 16.04-LTS, 18.04-LTS."
+        "description": "Include Regex for Blob SAS Url for Azure Application Gateway Access Logs. You can input Application Gateway name to restrict log analysis to a single Application Gateway."
       }
     },
     "location": {
@@ -54,7 +52,7 @@
     "publicIPAddressName": "[concat(parameters('dnsNameForPublicIP'), '_publicip')]",
     "publicIPAddressType": "Dynamic",    
     "vmName": "[parameters('dnsNameForPublicIP')]",
-    "vmSize": "Standard_A2",
+    "vmSize": "Standard_D2_v2",
     "virtualNetworkName": "[concat(parameters('dnsNameForPublicIP'), '_vnet')]",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]"
   },
@@ -139,7 +137,7 @@
           "imageReference": {
             "publisher": "[variables('imagePublisher')]",
             "offer": "[variables('imageOffer')]",
-            "sku": "[parameters('ubuntuOSVersion')]",
+            "sku": "18.04-LTS",
             "version": "latest"
           },
           "osDisk": {
@@ -172,11 +170,11 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": [
-            "https://raw.githubusercontent.com/rajajip/azure-quickstart-templates/goaccess-on-ubuntu/goaccess-on-ubuntu/scripts/install_goaccess.sh",
-            "https://raw.githubusercontent.com/rajajip/azure-quickstart-templates/goaccess-on-ubuntu/goaccess-on-ubuntu/scripts/setup_vm.sh",            
+            "https://raw.githubusercontent.com/rajajip/azure-quickstart-templates/goaccess-on-ubuntu/application-gateway-logviewer-goaccess/scripts/install_goaccess.sh",
+            "https://raw.githubusercontent.com/rajajip/azure-quickstart-templates/goaccess-on-ubuntu/application-gateway-logviewer-goaccess/scripts/setup_vm.sh",
             "https://bakerstr.blob.core.windows.net/logprocessor/publish.zip?st=2018-09-10T12%3A29%3A06Z&se=2050-09-11T12%3A29%3A00Z&sp=rl&sv=2018-03-28&sr=b&sig=HFJMvu8dzn8QEl%2BTrGDyKfZ90kVLDw1KywEhyWbVdpA%3D"
           ],
-          "commandToExecute": "[concat('sh setup_vm.sh ' , parameters('appGwAccessLogsBlobSasUri'))]"
+          "commandToExecute": "[concat('sh setup_vm.sh ' , parameters('appGwAccessLogsBlobSasUri'), ' ' , parameters('appGwAccessLogsBlobUrlIncludeRegex'))]"
         }
       }
     }

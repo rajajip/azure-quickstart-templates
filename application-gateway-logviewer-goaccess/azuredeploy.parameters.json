@@ -13,6 +13,9 @@
     },
 	  "appGwAccessLogsBlobSasUri": {
 	    "value" : ""
-	  }	
+    },
+    "appGwAccessLogsBlobUrlIncludeRegex": {
+	    "value" : ""
+	  }
   }
 }
