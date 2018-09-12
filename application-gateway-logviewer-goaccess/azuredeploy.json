@@ -24,7 +24,7 @@
     "appGwAccessLogsBlobSasUri": {
       "type": "string",
       "metadata": {
-        "description": "The SAS URL connection string (see 2(c) in the Pre-requisites list above) for the storage account blog where your Application Gateway Access Logs are stored"
+        "description": "The SAS URL connection string for the storage account blog where your Application Gateway Access Logs are stored"
       }
     },
     "filterRegexForAppGwAccessLogs": {
