@@ -8,7 +8,9 @@
 <h2>Introduction</h2>
 This template configures the <a href="https://goaccess.io">GoAccess log analyzer</a> for Azure Application Gateway access logs. Using GoAccess, users can quickly analyze and view their Application Gateway statistics in real time using their browser through generated HTML reports.
  
-The template creates an Ubuntu VM, installs Apache2 as well as GoAccess log analyzer and then connects the VM with the customer’s Blob container to periodically fetch incremental access logs of Application Gateway. 
+The template creates an Ubuntu VM under your (customer) subscription, installs Apache HTTP web server as well as the GoAccess log analyzer, and then connects the VM with the customer’s Blob container to periodically fetch incremental access logs of Application Gateway. GoAccess will parse the access logs and display rich statistics on traffic.
+
+By default, GoAccess installed by this template will parse and display traffic stats for the past 3 days’ worth of logs, if present. 
  
 <h2>Pre-requisites:</h2>
     <ol type="1">
