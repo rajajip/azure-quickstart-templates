@@ -28,7 +28,8 @@
       }
     },
     "appGwAccessLogsBlobUrlIncludeRegex": {
-      "type": "string",      
+      "type": "string",
+      "defaultValue": ".*",
       "metadata": {
         "description": "Include Regex for Blob SAS Url for Azure Application Gateway Access Logs. You can input Application Gateway name to restrict log analysis to a single Application Gateway."
       }
