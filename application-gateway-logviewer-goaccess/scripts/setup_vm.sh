@@ -24,8 +24,8 @@ apt-get -y install aspnetcore-runtime-2.1
 # Install Log Processor Application
 mkdir /var/log/azure/Microsoft.Azure.Networking.ApplicationGateway.LogProcessor
 touch /var/log/azure/Microsoft.Azure.Networking.ApplicationGateway.LogProcessor/access_log.log
-unzip -o publish.zip
-mv publish /usr/share/appgatewaylogprocessor
+unzip -o AppGatewayLogProcessor.zip
+mv AppGatewayLogProcessor /usr/share/appgatewaylogprocessor
 
 # Setup the Template Params
 echo $1 >> /usr/share/appgatewaylogprocessor/blobsasuri.key
