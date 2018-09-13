@@ -71,7 +71,7 @@
     "publicIPAddressName": "[concat(parameters('dnsNameForPublicIP'), '_publicip')]",    
     "virtualNetworkName": "[concat(parameters('dnsNameForPublicIP'), '_vnet')]",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
-    "scriptFileUri": "[uri(parameters('_artifactsLocation'), concat('scripts/setup_vm.sh', parameters('_artifactsLocationSasToken')))]",
+    "scriptFileUri": "[uri(parameters('_artifactsLocation'), concat('/scripts/setup_vm.sh', parameters('_artifactsLocationSasToken')))]",
     "appGwAccessLogsBlobSasUriVar": "[concat('\"', parameters('appGwAccessLogsBlobSasUri'), '\"')]",
     "filterRegexForAppGwAccessLogsVar": "[concat('\"|', parameters('filterRegexForAppGwAccessLogs'), '|\"')]"
   },
