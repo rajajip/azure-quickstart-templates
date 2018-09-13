@@ -53,6 +53,7 @@
     "nicName": "[concat(parameters('dnsNameForPublicIP'), '_vmnic')]",
     "addressPrefix": "10.0.0.0/16",   
     "subnetPrefix": "10.0.0.0/24",   
+    "subnetName": "DefaultSubnet",
     "publicIPAddressName": "[concat(parameters('dnsNameForPublicIP'), '_publicip')]",    
     "vmName": "[parameters('dnsNameForPublicIP')]",   
     "virtualNetworkName": "[concat(parameters('dnsNameForPublicIP'), '_vnet')]",
@@ -86,7 +87,7 @@
         },
         "subnets": [
           {
-            "name": "DefaultSubnet",
+            "name": "[variables('subnetName')]",
             "properties": {
               "addressPrefix": "[variables('subnetPrefix')]"
             }
