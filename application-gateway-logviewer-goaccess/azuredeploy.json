@@ -52,7 +52,7 @@
       "metadata": {
           "description": "The base URI where artifacts required by this template are located including a trailing '/'"
       },  
-      "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/application-gateway-logviewer-goaccess"
+      "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/application-gateway-logviewer-goaccess/"
     },
     "_artifactsLocationSasToken": {
       "type": "securestring",
@@ -71,7 +71,7 @@
     "publicIPAddressName": "[concat(parameters('dnsNameForPublicIP'), '_publicip')]",    
     "virtualNetworkName": "[concat(parameters('dnsNameForPublicIP'), '_vnet')]",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
-    "scriptFileUri": "[uri(parameters('_artifactsLocation'), concat('/scripts/setup_vm.sh', parameters('_artifactsLocationSasToken')))]",
+    "scriptFileUri": "[uri(parameters('_artifactsLocation'), concat('scripts/setup_vm.sh', parameters('_artifactsLocationSasToken')))]",
     "appGwAccessLogsBlobSasUriVar": "[concat('\"', parameters('appGwAccessLogsBlobSasUri'), '\"')]",
     "filterRegexForAppGwAccessLogsVar": "[concat('\"|', parameters('filterRegexForAppGwAccessLogs'), '|\"')]"
   },
