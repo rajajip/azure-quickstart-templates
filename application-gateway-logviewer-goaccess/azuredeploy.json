@@ -197,7 +197,7 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": [            
-            "[variables('scriptFileUri)]"
+            "[variables('scriptFileUri')]"
           ],
           "commandToExecute": "[concat('sh setup_vm.sh ' , variables('appGwAccessLogsBlobSasUriVar'), ' ', variables('filterRegexForAppGwAccessLogsVar'))]"
         }
