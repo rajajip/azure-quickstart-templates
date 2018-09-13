@@ -32,6 +32,7 @@ mkdir -p /var/log/azure/Microsoft.Azure.Networking.ApplicationGateway.LogProcess
 touch /var/log/azure/Microsoft.Azure.Networking.ApplicationGateway.LogProcessor/access_log.log
 mkdir -p /usr/share/appgatewaylogprocessor
 unzip -o AppGatewayLogProcessor.zip -d /usr/share/appgatewaylogprocessor/
+sh /usr/share/appgatewaylogprocessor/files/scripts/setup_application.sh
 
 # Setup the Template Params
 echo $1 >> /usr/share/appgatewaylogprocessor/blobsasuri.key

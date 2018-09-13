@@ -48,7 +48,7 @@
       }
     }
   },
-  "variables": {    
+  "variables": {
     "vmName": "[parameters('dnsNameForPublicIP')]",
     "nicName": "[concat(parameters('dnsNameForPublicIP'), '_vmnic')]",
     "addressPrefix": "10.0.0.0/16",
