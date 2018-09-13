@@ -46,6 +46,20 @@
       "metadata": {
         "description": "Location for all resources."
       }
+    },
+    "_artifactsLocation": {
+      "type": "string",
+      "metadata": {
+          "description": "The base URI where artifacts required by this template are located including a trailing '/'"
+      },  
+      "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/application-gateway-logviewer-goaccess"
+    },
+    "_artifactsLocationSasToken": {
+      "type": "securestring",
+      "metadata": {
+          "description": "The sasToken required to access _artifactsLocation.  When the template is deployed using the accompanying scripts, a sasToken will be automatically generated. Use the defaultValue if the staging location is not secured."
+      },
+      "defaultValue": ""
     }
   },
   "variables": {
@@ -57,6 +71,7 @@
     "publicIPAddressName": "[concat(parameters('dnsNameForPublicIP'), '_publicip')]",    
     "virtualNetworkName": "[concat(parameters('dnsNameForPublicIP'), '_vnet')]",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
+    "scriptFileUri": "[uri(parameters('_artifactsLocation'), concat('scripts/setup_vm.sh', parameters('_artifactsLocationSasToken')))]",
     "appGwAccessLogsBlobSasUriVar": "[concat('\"', parameters('appGwAccessLogsBlobSasUri'), '\"')]",
     "filterRegexForAppGwAccessLogsVar": "[concat('\"|', parameters('filterRegexForAppGwAccessLogs'), '|\"')]"
   },
@@ -182,7 +197,7 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": [            
-            "https://appgwloganalyzergoaccess.blob.core.windows.net/loganalyzerservice/scripts/setup_vm.sh?st=2018-09-12T07%3A09%3A54Z&se=2050-09-13T07%3A09%3A00Z&sp=rl&sv=2018-03-28&sr=b&sig=y57URB%2FiGrAawyHhDb6waznnyHvSrOsAHEcF4cu9BFw%3D"            
+            "[variables('scriptFileUri)]"
           ],
           "commandToExecute": "[concat('sh setup_vm.sh ' , variables('appGwAccessLogsBlobSasUriVar'), ' ', variables('filterRegexForAppGwAccessLogsVar'))]"
         }
