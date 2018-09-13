@@ -11,6 +11,9 @@
     "dnsNameForPublicIP": {
       "value": "GEN-UNIQUE-12"
     },
+    "vmSize": {
+      "value": "Standard_A2_v2"
+    },
 	  "appGwAccessLogsBlobSasUri": {
 	    "value" : "GEN-UNIQUE-24"
     },
