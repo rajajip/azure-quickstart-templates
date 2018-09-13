@@ -23,7 +23,7 @@
     },
     "dnsNameForPublicIP": {
       "type": "string",
-      "defaultValue": "[concat('appgw',uniquestring(resourceGroup().id))]",
+      "defaultValue": "[concat('appgw_', uniquestring(resourceGroup().id))]",
       "metadata": {
         "description": "The DNS name (prefix) you want to use for the VM to map against its public IP"
       }
@@ -49,10 +49,10 @@
       }
     }
   },
-  "variables": {  
+  "variables": {
     "nicName": "[concat(parameters('dnsNameForPublicIP'), '_vmnic')]",
-    "addressPrefix": "10.0.0.0/16",   
-    "subnetPrefix": "10.0.0.0/24",   
+    "addressPrefix": "10.0.0.0/16",
+    "subnetPrefix": "10.0.0.0/24",  
     "subnetName": "DefaultSubnet",
     "publicIPAddressName": "[concat(parameters('dnsNameForPublicIP'), '_publicip')]",    
     "vmName": "[parameters('dnsNameForPublicIP')]",   
