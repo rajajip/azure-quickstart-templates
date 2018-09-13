@@ -22,7 +22,8 @@
       }
     },
     "dnsNameForPublicIP": {
-      "type": "string",     
+      "type": "string", 
+      "defaultValue": "[variables('dnsNameForPublicIPVar')]",   
       "metadata": {
         "description": "The DNS name (prefix) you want to use for the VM to map against its public IP"
       }
@@ -49,6 +50,7 @@
     }
   },
   "variables": {    
+    "dnsNameForPublicIPVar": "[concat('appgw', uniqueString(resourceGroup().id))]",
     "vmName": "[parameters('dnsNameForPublicIP')]",
     "nicName": "[concat(parameters('dnsNameForPublicIP'), '_vmnic')]",
     "addressPrefix": "10.0.0.0/16",
