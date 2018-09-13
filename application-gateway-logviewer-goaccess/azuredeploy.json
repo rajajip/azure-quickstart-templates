@@ -193,7 +193,7 @@
   "outputs": {
     "goAccessReportUrl": {
       "type": "string",
-      "value": "[concat(reference(variables('publicIPAddressName')).dnsSettings.fqdn, '/report.html']"
+      "value": "[concat(reference(variables('publicIPAddressName')).dnsSettings.fqdn, '/report.html')]"
     },
     "sshCommand": {
       "type": "string",
