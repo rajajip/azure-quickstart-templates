@@ -149,7 +149,7 @@
             "name": "GoAccessSocket",
             "properties": {
               "provisioningState": "Succeeded",
-              "protocol": "*",
+              "protocol": "Tcp",
               "sourcePortRange": "*",
               "destinationPortRange": "8080",
               "sourceAddressPrefix": "*",
