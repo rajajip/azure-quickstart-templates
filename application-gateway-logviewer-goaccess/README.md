@@ -46,10 +46,14 @@ User can view the logs based on the parameters available in the Application Gate
 
 Please note following aspects related to this template:
     <ul>
-    <li>There may be up to 5 minutes delay in seeing statistics updated on GoAccess. This is by design, due to the underlying delays in logs published to Azure storage from your application gateways.</li>
+    <li>There may be up to 5 minutes delay (beyond the latency in pushing logs from Application Gateways to Storage account) in seeing statistics updated on GoAccess.</li>
     <li>This solution may result in increased data, network, or compute resource usage in Azure. The solution may increase a customer’s Azure license or subscription costs.</li>
     <li>The time duration of logs that can be analyzed depends on the size of the RAM and disc capacity configured for the underlying VM.</li>
     </ul>
+
+<h2>Securing Access</h2>
+
+By default, the GoAccess dashboard and associated data are unsecured. Since the web server is Apache HTTP Webserver, you can secure access by following the <a href="https://httpd.apache.org/docs/2.4/howto/auth.html">Apache Auth documentation</a>.
 
 <h2>Getting Help</h2>
 
