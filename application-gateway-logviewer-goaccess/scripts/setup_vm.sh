@@ -26,7 +26,6 @@ apt-get -y install libcurl3 unzip
 apt-get -y install aspnetcore-runtime-2.1
 
 # Install Log Processor Application
-wget -q -O AppGatewayLogProcessor.zip "https://appgwloganalyzergoaccess.blob.core.windows.net/loganalyzerservice/build/AppGatewayLogProcessor.zip?st=2018-09-12T06%3A56%3A42Z&se=2050-09-13T06%3A56%3A00Z&sp=rl&sv=2018-03-28&sr=b&sig=c9x6svGOKJOHvHEwCDzM9BSrO5FwPRMIDhuQ4m1OeWQ%3D"
 systemctl stop appgatewaylogprocessor
 mkdir -p /var/log/azure/Microsoft.Azure.Networking.ApplicationGateway.LogProcessor
 touch /var/log/azure/Microsoft.Azure.Networking.ApplicationGateway.LogProcessor/access_log.log
