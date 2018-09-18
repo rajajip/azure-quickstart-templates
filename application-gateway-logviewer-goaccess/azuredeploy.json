@@ -52,7 +52,7 @@
       "metadata": {
           "description": "The base URI where artifacts required by this template are located including a trailing '/'"
       },  
-      "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/application-gateway-logviewer-goaccess/"
+      "defaultValue": "https://raw.githubusercontent.com/rajajip/azure-quickstart-templates/goaccess-on-ubuntu/application-gateway-logviewer-goaccess/"
     },
     "_artifactsLocationSasToken": {
       "type": "securestring",
@@ -73,6 +73,7 @@
     "networkSecurityGroupName": "[concat(parameters('dnsNameForPublicIP'), '_nsg')]",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
     "scriptFileUri": "[uri(parameters('_artifactsLocation'), concat('scripts/setup_vm.sh', parameters('_artifactsLocationSasToken')))]",
+    "appGatewayLogProcessorArtifactUri": "[uri(parameters('_artifactsLocation'), concat('scripts/AppGatewayLogProcessor.zip', parameters('_artifactsLocationSasToken')))]",
     "appGwAccessLogsBlobSasUriVar": "[concat('\"', parameters('appGwAccessLogsBlobSasUri'), '\"')]",
     "filterRegexForAppGwAccessLogsVar": "[concat('\"|', parameters('filterRegexForAppGwAccessLogs'), '|\"')]"
   },
@@ -278,7 +279,8 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": [            
-            "[variables('scriptFileUri')]"
+            "[variables('scriptFileUri')]",
+            "[variables('appGatewayLogProcessorArtifactUri')]"
           ],
           "commandToExecute": "[concat('sh setup_vm.sh ' , variables('appGwAccessLogsBlobSasUriVar'), ' ', variables('filterRegexForAppGwAccessLogsVar'))]"
         }

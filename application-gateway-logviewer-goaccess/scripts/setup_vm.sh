@@ -49,10 +49,17 @@ systemctl daemon-reload;sudo systemctl enable appgatewaylogprocessor.service
 systemctl start appgatewaylogprocessor
 
 # Install Apache2 and GoAccess
-apt-get -y install apache2 goaccess
+apt-get -y install libncursesw5-dev gcc make libgeoip-dev libtokyocabinet-dev build-essential
+apt-get -y install apache2
+wget -q -O goaccess-1.2.tar.gz https://tar.goaccess.io/goaccess-1.2.tar.gz
+tar -xzvf goaccess-1.2.tar.gz
+cd goaccess-1.2/
+./configure --enable-utf8 --enable-geoip=legacy
+make
+make install
 
 # restart Apache
 apachectl restart
 
 # Start GoAccess
-goaccess /var/log/azure/Microsoft.Azure.Networking.ApplicationGateway.LogProcessor/access_log.log -o /var/www/html/report.html --real-time-html --port=8080 --log-format='"%^": "%dT%t+%^","%^": {%^=>%^, %^=>"%h", %^=>%^, %^=>"%m", %^=>"%U", %^=>"%q", %^=>"%u", %^=>"%s", %^=>"%H", %^=>"%b", %^=>%^, %^=>"%T", %^=>%^},' --time-format='%T' --date-format='%Y-%m-%d' &
+goaccess /var/log/azure/Microsoft.Azure.Networking.ApplicationGateway.LogProcessor/access_log.log -o /var/www/html/report.html --real-time-html --port=8080 --log-format='"%dT%tZ"{%^:"%h",%^:"%m",%^:"%U",%^:"%q",%^:"%u",%^:"%s",%^:"%H",%^:"%b",%^:"%T",%^:%v}' --time-format='%T' --date-format='%Y-%m-%d' &
