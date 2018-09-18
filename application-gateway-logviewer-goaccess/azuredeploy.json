@@ -256,7 +256,7 @@
               "lun": 0,
               "createOption": "Empty",
               "managedDisk": {
-                "storageAccountType": "Premium_LRS"
+                "storageAccountType": "StandardSSD_LRS"
               }
             }
           ]
