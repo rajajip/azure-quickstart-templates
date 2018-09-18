@@ -27,8 +27,9 @@ apt-get -y install aspnetcore-runtime-2.1
 
 # Install Log Processor Application
 systemctl stop appgatewaylogprocessor
+systemctl stop goaccess
 mkdir -p /var/log/azure/Microsoft.Azure.Networking.ApplicationGateway.LogProcessor
-touch /var/log/azure/Microsoft.Azure.Networking.ApplicationGateway.LogProcessor/access_log.log
+touch /var/log/azure/Microsoft.Azure.Networking.ApplicationGateway.LogProcessor/access.log
 mkdir -p /usr/share/appgatewaylogprocessor
 unzip -o AppGatewayLogProcessor.zip -d /usr/share/appgatewaylogprocessor/
 sh /usr/share/appgatewaylogprocessor/files/scripts/setup_application.sh
@@ -39,12 +40,14 @@ chmod 644 /usr/share/appgatewaylogprocessor/blobsasuri.key
 echo $2 >> /usr/share/appgatewaylogprocessor/appgwlogsbloburlregex
 chmod 644 /usr/share/appgatewaylogprocessor/appgwlogsbloburlregex
 
-# Install the Application Gateway Log Processor Service
+# Install the Application Gateway Log Processor & GoAccess Service
 cp /usr/share/appgatewaylogprocessor/files/appgatewaylogprocessor.service /etc/systemd/system/appgatewaylogprocessor.service
-systemctl daemon-reload;sudo systemctl enable appgatewaylogprocessor.service
+cp /usr/share/appgatewaylogprocessor/files/goaccess.service /etc/systemd/system/goaccess.service
+systemctl daemon-reload
+sudo systemctl enable appgatewaylogprocessor.service
+sudo systemctl enable goaccess.service
 
 # Start the Application Gateway Log Processor
-#dotnet /usr/share/appgatewaylogprocessor/AppGatewayLogProcessor.dll &
 systemctl start appgatewaylogprocessor
 
 # Install Apache2 and GoAccess
@@ -61,4 +64,4 @@ make install
 apachectl restart
 
 # Start GoAccess
-goaccess /var/log/azure/Microsoft.Azure.Networking.ApplicationGateway.LogProcessor/access_log.log -o /var/www/html/report.html --real-time-html --port=8080 --log-format='"%dT%tZ"{%^:"%h",%^:"%m",%^:"%U",%^:"%q",%^:"%u",%^:"%s",%^:"%H",%^:"%b",%^:"%T",%^:%v}' --time-format='%T' --date-format='%Y-%m-%d' &
+systemctl start goaccess
